@@ -1,8 +1,7 @@
+import type { Joke } from "@prisma/client";
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { useLoaderData, Link } from "@remix-run/react";
-import type { Joke } from "@prisma/client";
-
+import { Link, useLoaderData } from "@remix-run/react";
 import { db } from "~/utils/db.server";
 
 type LoaderData = { randomJoke: Joke };
@@ -28,4 +27,8 @@ export default function JokesIndexRoute() {
       <Link to={data.randomJoke.id}>"{data.randomJoke.name}" Permalink</Link>
     </div>
   );
+}
+
+export function ErrorBoundary() {
+  return <div className="error-container">I did a whoopsies.</div>;
 }
